@@ -1,5 +1,5 @@
 //App1
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 
 function App() {
   const [input, setInput] = useState('');
@@ -7,6 +7,19 @@ function App() {
     'Pagar a conta de Luz',
     'Estudar React JS'
   ]);
+
+  //Carregar a lista
+  useEffect(()=>{
+    const tarefasStorage = localStorage.getItem('@tarefa');
+    if (tarefasStorage){
+      setTarefas(JSON.parse(tarefasStorage))
+    }
+  }, []);
+
+  //Salvar a lista
+  useEffect(()=>{
+    localStorage.setItem('@tarefa', JSON.stringify(tarefas))
+  }, [tarefas]);
 
   function handleRegister(e){
     e.preventDefault();
@@ -16,7 +29,7 @@ function App() {
 
   return (
   <div>
-    <h1>Cadastrando Usuário</h1>
+    <h1>Cadastrando tarefa</h1>
     <form onSubmit={handleRegister}>
       <label>Nome da Tarefa:</label><br/>
       <input 
