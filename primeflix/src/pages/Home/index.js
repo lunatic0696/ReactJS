@@ -1,10 +1,12 @@
 import { useEffect, useState} from 'react';
 import api from '../../services/api';
+import { Link } from 'react-router-dom';
 
 // URL DA API: /movie/now_playing?api_key=cfd7c0d84de2941640648444622bc787&language=pt-BR
 
 function Home(){
   const [filmes, setFilmes] = useState([]);
+  const imgurl ='https://image.tmdb.org/t/p/original/';
 
 
   useEffect(()=>{
@@ -18,7 +20,8 @@ function Home(){
         }
       })
 
-      console.log(response.data.results);
+      //console.log(response.data.results);
+      setFilmes(response.data.results.slice(0,10))
 
     }
 
@@ -27,8 +30,19 @@ function Home(){
   }, [])
 
   return(
-    <div>
-      <h1>BEM VINDO A HOME</h1>
+    <div className='container'>
+      <div className='lista-filmes'>
+        {filmes.map((filme) =>{
+          let imgconcat = imgurl+filme.poster_path;
+          return(
+            <article key={filme.id}>
+              <strong>{filme.title}</strong>
+              <img src={imgconcat} alt={filme.title} />
+              <Link to={'/filme/${filme.id}'}>Acessar</Link>
+            </article>
+          )
+        })}
+      </div>
     </div>
   )
 }
