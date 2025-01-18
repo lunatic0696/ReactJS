@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api, { getMovieData } from "../api/api";
+import { getMovieData } from "../api/api";
 
 function MoviesPortal(){
     const [searchInputText, setSearchInputText] = useState('');
@@ -16,8 +16,9 @@ function MoviesPortal(){
     };
 
     useEffect(() => {
-       setMovie(getMovieData(enteredSearchText))
-    })
+       setMovie(getMovieData(enteredSearchText).)
+       console.log(movie);
+    },[enteredSearchText])
 
     return(
         <>
