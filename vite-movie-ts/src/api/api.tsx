@@ -1,19 +1,13 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://www.omdbapi.com/'
+  baseURL: 'http://www.omdbapi.com/',
 });
 
 export async function getMovieData(searchText:string) {
-    await api.get('', {
-        params:{
-            apikey: '416ff46d',
-            s: {searchText},
-            type: 'movie'
-        }
-    })
+    await api.get(`http://www.omdbapi.com/?s=${searchText}&apikey=416ff46d`)
     .then((response) => {
-        return(response.data)
+        return(response)
       })
 }
 

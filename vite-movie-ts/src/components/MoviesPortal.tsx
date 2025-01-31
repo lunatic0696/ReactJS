@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getMovieData } from "../api/api";
+import axios from 'axios';
+
 
 function MoviesPortal(){
     const [searchInputText, setSearchInputText] = useState('');
     const [enteredSearchText, setEnteredSearchText] = useState('');
-    const [movie, setMovie] = useState({});
+    const [movie, setMovie] = useState([]);
 
     const onSearchTextEnter = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -16,9 +17,25 @@ function MoviesPortal(){
     };
 
     useEffect(() => {
-       setMovie(getMovieData(enteredSearchText).)
-       console.log(movie);
-    },[enteredSearchText])
+        const fetchMovies = async() =>{
+            const {data} = await axios.get(
+                `http://www.omdbapi.com/?s=${enteredSearchText}&apikey=416ff46d`
+                );
+            if (data.Search){
+                setMovie(data.Search);
+            }
+            else {
+                console.log('Search does not exist... Showing raw JSON caught:')
+                console.log('searchtext:' + enteredSearchText);
+                console.log(await axios.get(
+                    `http://www.omdbapi.com/?s=${enteredSearchText}&apikey=416ff46d`
+                    ))
+            }
+        };
+
+        fetchMovies();
+        console.log(movie);
+    },[enteredSearchText]);
 
     return(
         <>
