@@ -3,17 +3,18 @@ import axios from 'axios';
 
 
 function MoviesPortal(){
-    const [searchInputText, setSearchInputText] = useState('');
-    const [enteredSearchText, setEnteredSearchText] = useState('');
+    const [searchInputText, setSearchInputText] = useState<string>('');
+    const [enteredSearchText, setEnteredSearchText] = useState<string>('');
     const [movie, setMovie] = useState([]);
 
-    const onSearchTextEnter = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    function onSearchTextEnter(e: React.FormEvent<HTMLFormElement>){
+        e.preventDefault();
         setEnteredSearchText(searchInputText)
     };
 
-    function searchTextChange(event: React.ChangeEvent<HTMLInputElement>){
-        setSearchInputText(event.currentTarget.value)
+    function searchTextChange(e: React.ChangeEvent<HTMLInputElement>){
+        const text = e.currentTarget.value;
+        setSearchInputText(text)
     };
 
     useEffect(() => {
@@ -26,10 +27,11 @@ function MoviesPortal(){
             }
             else {
                 console.log('Search does not exist... Showing raw JSON caught:')
-                console.log('searchtext:' + enteredSearchText);
                 console.log(await axios.get(
                     `http://www.omdbapi.com/?s=${enteredSearchText}&apikey=416ff46d`
-                    ))
+                    ));
+                console.log('enteredsearchtext:' + enteredSearchText);
+                console.log('searchinputtext:' + searchInputText);
             }
         };
 
@@ -43,7 +45,10 @@ function MoviesPortal(){
                 <div className="col-md-12">
                     <form onSubmit={onSearchTextEnter}>
                         <input 
-                        type="text" placeholder="Search for a Movie..." className="form-control"
+                        name="movieName"
+                        type="text" 
+                        placeholder="Search for a Movie..."
+                        className="form-control"
                         value={searchInputText} 
                         onChange={searchTextChange}
                         />
