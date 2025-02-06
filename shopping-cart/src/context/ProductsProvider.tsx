@@ -8,6 +8,9 @@ export type ProductType ={
 
 
 const initState: ProductType[] = [];
+
+//Instanciando versão local (Não utilizado)
+//
 //const initState: ProductType[] = [
 //    {
 //        "sku": "item0001",
@@ -39,7 +42,15 @@ export const ProductsProvider = ({ children }: ChildrenType):ReactElement => {
     (initState)
 
     useEffect(() => {
-        const fetchProducts
+        const fetchProducts = async (): Promise<ProductType[]> => {
+            const data = await fetch('http://localhost:3500/products').then(res => {
+                return res.json()
+            }).catch(err => {
+                if (err instanceof Error) console.log(err.message)
+            })
+            return data
+        }
+        fetchProducts().then(products => setProducts(products))
     },[])
 
     return(
