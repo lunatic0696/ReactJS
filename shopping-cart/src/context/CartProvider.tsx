@@ -1,3 +1,5 @@
+import { useMemo, useReducer } from "react"
+
 export type CartItemType = {
     sku: string,
     name: string,
@@ -51,6 +53,8 @@ CartStateType => {
 
             const filteredCart: CartItemType[] = state.cart.filter(item =>item.sku != sku)
 
+            return { ...state, cart: [ ...filteredCart, updatedItem ]}
+
         }
         case REDUCER_ACTION_TYPE.REMOVE: {
             if (!action.payload) {
@@ -62,11 +66,26 @@ CartStateType => {
             return { ...state, cart: [ ...filteredCart] }
         }
         case REDUCER_ACTION_TYPE.SUBMIT: {
-            if (!action.payload) {
-                throw new Error('action.payload missing in SUBMIT action')
-            }
+            return { ...state, cart: []}
         }
         default:
             throw new Error('Unidentified reducer action Type')
     }
+}
+
+const useCartContext = (initCartState: CartStateType) => {
+    const [state, dispatch] = useReducer(reducer, initCartState)
+    const REDUCER_ACTIONS = useMemo(() => {
+        return REDUCER_ACTION_TYPE
+    },[])
+
+    const totalItems = state.cart.reduce((previousValue, cartItem) => {
+        return previousValue + cartItem.qty
+    }, 0);
+
+    const totalPrice = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD'}).format(
+        state.cart.reduce((previousValue, cartItem) => {
+            return previousValue + (cartItem.qty * cartItem.price)
+        }, 0)
+    )
 }
