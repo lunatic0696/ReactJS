@@ -14,7 +14,7 @@ const Nav = ({ viewCart, setViewCart }: PropsType) => {
         </nav>
     )
     return (
-        <div>Nav</div>
+        content
     )
 }
 

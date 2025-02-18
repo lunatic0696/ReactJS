@@ -1,6 +1,6 @@
 import Cart from "./components/Cart"
 import Header from "./components/Header"
-import Footer from "./components/footer"
+import Footer from "./components/Footer"
 import ProductList from "./components/ProductList"
 import { useState } from "react"
 
