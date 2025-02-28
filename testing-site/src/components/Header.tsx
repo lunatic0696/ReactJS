@@ -3,20 +3,28 @@ import { Navbar, Container, Nav, NavDropdown, Col, Row } from "react-bootstrap";
 
 function Header() {
     return(
-        <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary" fixed="top">
+        <Navbar data-bs-theme="dark" expand="lg" className="bg-body-tertiary" fixed="top">
       <Container>
         <Navbar.Brand >
-            <img 
-                src="src/assets/avatar.png"
-                width="60"
-                height="auto"
-             />
-            <Container>
-                <Row>
-                    <Col>Test 1</Col>
-                    <Col>Test 2</Col>
-                </Row>
-            </Container>
+          <Container>
+              <Row>
+                <Col>
+                  <img 
+                    src="src/assets/avatar.png"
+                    width="60"
+                    height="auto"
+                  />
+                </Col>
+                <Col>
+                  <Row>
+
+                  </Row>
+                  <Row>
+                    
+                  </Row>
+                </Col>
+              </Row>
+          </Container>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
