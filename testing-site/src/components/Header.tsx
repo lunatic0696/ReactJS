@@ -1,13 +1,12 @@
 import { Navbar, Nav, NavDropdown, Col, Row } from "react-bootstrap";
 import TransFlag from "./TransFlag";
-import "./Style.css"
 
 function Header() {
   return(
   <Navbar expand="lg" className="bg-body-secondary" fixed="top" style={{padding: "0px"}}>
       <Navbar.Brand style={{paddingLeft: "20px", paddingBottom: "0px", paddingTop: "0px"}}>
-        <Row>
-          <Col style={{padding: "10px"}}>
+        <Row className="main-logo-header">
+          <Col style={{padding: "10px", paddingLeft: "20px"}}>
             <img 
               src="src/assets/avatar.png"
               width="60"
@@ -17,12 +16,14 @@ function Header() {
           <Col>
             <TransFlag/>
           </Col>
-          <Col className="align-self-center">
+          <Col className="my-auto">
             <Row>
-              Alice
+              <p style={{marginBottom: "3px", fontFamily: "Charmonman", fontWeight:"700"}}>
+                Alice</p>
             </Row>
             <Row>
-              Ferreira
+              <p style={{marginBottom: "3px",  fontFamily: "Charmonman", fontWeight:"700"}}>
+                Ferreira</p>
             </Row>
           </Col>
         </Row>
