@@ -5,7 +5,7 @@ function Header() {
   return(
   <Navbar expand="lg" className="bg-body-secondary" fixed="top" style={{padding: "0px"}}>
       <Navbar.Brand style={{paddingLeft: "20px", paddingBottom: "0px", paddingTop: "0px"}}>
-        <Row className="main-logo-header">
+        <Row className="main-logo-header" style={{alignItems:"center", display:"flex"}}>
           <Col style={{padding: "10px", paddingLeft: "20px"}}>
             <img 
               src="src/assets/avatar.png"
@@ -16,15 +16,14 @@ function Header() {
           <Col>
             <TransFlag/>
           </Col>
-          <Col className="my-auto">
-            <Row>
-              <p style={{marginBottom: "3px", fontFamily: "Charmonman", fontWeight:"700"}}>
-                Alice</p>
-            </Row>
-            <Row>
-              <p style={{marginBottom: "3px",  fontFamily: "Charmonman", fontWeight:"700"}}>
-                Ferreira</p>
-            </Row>
+          <Col>
+            <p style={{
+              marginBottom: "0px", 
+              fontFamily: "Genos", 
+              fontWeight:"500", 
+              fontSize: "30px", 
+              lineHeight:"25px"}}>
+              Alice<br/>Ferreira</p>
           </Col>
         </Row>
       </Navbar.Brand>
