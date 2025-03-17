@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
+    "jsnes": "^1.2.1",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
+    "react-konami-code": "^2.3.0",
     "react-router-dom": "^7.3.0"
   },
   "devDependencies": {

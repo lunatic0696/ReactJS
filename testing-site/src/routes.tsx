@@ -5,6 +5,7 @@ import FormExample from './pages/formExample';
 import ErrorPage from './pages/error';
 import Header from './components/Header';
 import { Container } from 'react-bootstrap';
+import Artnoc from './pages/artnoc';
 
 function RoutesApp(){
     return(
@@ -14,6 +15,7 @@ function RoutesApp(){
         <Routes>
             <Route path='/' element={ <MainPage/> }/>
             <Route path='/form-example' element={ <FormExample/> }/>
+            <Route path='/artnoc' element={ <Artnoc/> }/>
 
             <Route path='*' element={ <ErrorPage/> }/>
         </Routes>
